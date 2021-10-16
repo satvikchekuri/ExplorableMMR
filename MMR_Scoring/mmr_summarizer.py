@@ -192,16 +192,20 @@ def TF_IDF(sentences):
 def sentenceSim(sentence1, sentence2, IDF_w):
     numerator = 0
     denominator = 0
+    denominator1 = 0
 
     for word in sentence2.getPreProWords():
         numerator+= sentence1.getWordFreq().get(word,0) * sentence2.getWordFreq().get(word,0) *  IDF_w.get(word,0) ** 2
 
     for word in sentence1.getPreProWords():
         denominator+= ( sentence1.getWordFreq().get(word,0) * IDF_w.get(word,0) ) ** 2
+        
+    for word in sentence2.getPreProWords():
+        denominator1+= ( sentence2.getWordFreq().get(word,0) * IDF_w.get(word,0) ) ** 2
 
     # check for divide by zero cases and return back minimal similarity
     try:
-        return numerator / math.sqrt(denominator)
+        return numerator / (math.sqrt(denominator) * math.sqrt(denominator1))
     except ZeroDivisionError:
         return float("-inf")
 
