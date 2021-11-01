@@ -9,6 +9,6 @@
 
 You can run the base MMR method by running the below mentioned python file
 
-`run python MMR_Scoring/mmr_summarizer.py`
+`python3 MMR_Scoring/mmr_summarizer.py`
 
 
